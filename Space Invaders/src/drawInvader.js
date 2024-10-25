@@ -1,7 +1,7 @@
 import { Container } from 'pixi.js'
 import { generatePixel } from './generatePixel'
 
-export function drawInvader(app, matrix, color, sizeX, sizeY) {
+export function drawInvader(matrix, color, sizeX, sizeY) {
     const invaderContainer = new Container()
 
     for (let i = 0; i < matrix.length; i++) {
@@ -16,8 +16,5 @@ export function drawInvader(app, matrix, color, sizeX, sizeY) {
             }
         }
     }
-    invaderContainer.x = app.screen.width / 2 - invaderContainer.width / 2
-    invaderContainer.y = app.screen.height / 2 - invaderContainer.height / 2
-    console.log(invaderContainer.width, invaderContainer.height)
-    app.stage.addChild(invaderContainer)
+    return invaderContainer
 }
