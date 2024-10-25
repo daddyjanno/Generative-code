@@ -1,7 +1,7 @@
 import { Container } from 'pixi.js'
 import { generatePixel } from './generatePixel'
 
-export function drawInvader(matrix, color, sizeX, sizeY) {
+export function drawInvader(matrix, color, sizeX, sizeY, matrixSize) {
     const invaderContainer = new Container()
 
     for (let i = 0; i < matrix.length; i++) {
@@ -16,5 +16,6 @@ export function drawInvader(matrix, color, sizeX, sizeY) {
             }
         }
     }
+
     return invaderContainer
 }
