@@ -13,7 +13,7 @@ export function generateInvader(size) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < Math.ceil(matrix[i].length / 2); j++) {
             matrix[i][j].value = Math.round(Math.random())
-            matrix[i][j].alpha = 0.25 + Math.random() * 0.75
+            matrix[i][j].alpha = 0.5 + Math.random() * 0.5
         }
     }
 
