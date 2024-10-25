@@ -7,6 +7,7 @@ await app.init({
     resizeTo: window,
     antialias: true,
 })
+globalThis.__PIXI_APP__ = app
 document.body.appendChild(app.canvas)
 
 const matrix = []
@@ -18,7 +19,7 @@ function generateInvader() {
     for (let i = 0; i < spaceInvaderSize; i++) {
         const row = []
         for (let j = 0; j < spaceInvaderSize; j++) {
-            row.push(0)
+            row.push({ value: 0, alpha: 0 })
         }
         matrix.push(row)
     }
@@ -26,7 +27,8 @@ function generateInvader() {
     //randomize values for the first 4 columns
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < Math.ceil(matrix[i].length / 2); j++) {
-            matrix[i][j] = Math.round(Math.random())
+            matrix[i][j].value = Math.round(Math.random())
+            matrix[i][j].alpha = 0.25 + Math.random() * 0.75
         }
     }
 
@@ -39,11 +41,12 @@ function generateInvader() {
         }
     }
 }
+console.log(matrix)
+
 generateInvader()
 
 function createPixel() {
     const p = new Graphics().rect(0, 0, pixelSize, pixelSize).fill(0xffffff)
-    p.alpha = 0.25 + Math.random() * 0.75
     return p
 }
 
@@ -53,10 +56,11 @@ function drawInvader() {
     for (let i = 0; i < matrix.length; i++) {
         const row = matrix[i]
         for (let j = 0; j < row.length; j++) {
-            if (matrix[i][j]) {
+            if (matrix[i][j].value) {
                 const newPixel = createPixel()
                 newPixel.y = i * pixelSize
                 newPixel.x = j * pixelSize
+                newPixel.alpha = matrix[i][j].alpha
                 invaderContainer.addChild(newPixel)
             }
         }
