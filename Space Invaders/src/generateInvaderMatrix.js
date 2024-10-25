@@ -1,4 +1,4 @@
-export function generateInvader(size) {
+export function generateInvaderMatrix(size) {
     // generate base matrix
     const matrix = []
     for (let i = 0; i < size; i++) {
@@ -25,6 +25,5 @@ export function generateInvader(size) {
             matrix[i][matrix.length - 1 - j] = valueToDuplicate
         }
     }
-    console.log(matrix)
     return matrix
 }
