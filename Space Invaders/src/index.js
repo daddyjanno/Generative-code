@@ -12,13 +12,17 @@ globalThis.__PIXI_APP__ = app
 document.body.appendChild(app.canvas)
 
 const spaceInvaderSize = 7
-const pixelSize = 32
+const pixelSize = 7
 
 const invaderMatrix = generateInvader(spaceInvaderSize)
 
-function createPixel() {
-    const p = new Graphics().rect(0, 0, pixelSize, pixelSize).fill(0xffffff)
-    return p
+const color = Math.random() * 0xffffff
+
+function createPixel(color) {
+    const pixelContainer = new Container()
+    const p = new Graphics().rect(0, 0, pixelSize, pixelSize).fill(color)
+    pixelContainer.addChild(p)
+    return pixelContainer
 }
 
 function drawInvader() {
@@ -28,7 +32,7 @@ function drawInvader() {
         const row = invaderMatrix[i]
         for (let j = 0; j < row.length; j++) {
             if (invaderMatrix[i][j].value) {
-                const newPixel = createPixel()
+                const newPixel = createPixel(color)
                 newPixel.y = i * pixelSize
                 newPixel.x = j * pixelSize
                 newPixel.alpha = invaderMatrix[i][j].alpha
