@@ -30,6 +30,16 @@ function generateInvader() {
             matrix[i][j] = Math.round(Math.random())
         }
     }
+
+    // Symetry
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < Math.floor(matrix[i].length / 2); j++) {
+            console.log(matrix[i].length, i, j, matrix[i][j])
+            const valueToDuplicate = matrix[i][j]
+
+            matrix[i][matrix.length - 1 - j] = valueToDuplicate
+        }
+    }
 }
 generateInvader()
 console.log(matrix)
